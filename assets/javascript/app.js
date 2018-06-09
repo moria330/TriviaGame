@@ -15,27 +15,37 @@ var userChoice = [];
 
 
 
+var newLocal =
+    '<fieldset class= "form-group"> <lable> <input type = "radio" class = "form-check-input" name = "optionsRadios" id = ""a" + j" value = "true" checked = ""> True </lable>  <lable>    <input type = "radio" class = "form-check-input" name = "optionsRadios" id = ""a" + i" value = "false" checked = ""> False </lable> </fieldset>';
+
+
 $(document).ready(function() {
     for (var i = 0; i < questions.length; i++) {
-        var trivia = $(".trivia .card");
+        var trivia = $(".trivia");
         var cardHead = $("<div>");
         cardHead.addClass("card-header");
         cardHead.attr("id", "q" + i);
         cardHead.text(questions[i]);
-        var cardBody = $("<div>");
-        cardBody.addClass("card-body");
-        cardBody.attr("id", "a" + i);
-        cardBody.text("lorem ipsum");
-        cardHead.append(cardBody);
         trivia.append(cardHead);
 
     }
 
+    for (var j = 0; j < answers.length; j++) {
+        var quest = $("#q" + j);
+        var cardBody = $("<div>");
+        cardBody.addClass("card-body");
+        //cardBody.attr("id", "a" + i);
+        cardBody.html(newLocal);
+        quest.append(cardBody);
 
-    //setTimeout(timeUp, 20000);
+    }
+
+
+    setTimeout(timeUp, 20000);
 
     function timeUp() {
         alert("Time Up!");
+        user();
         for (var i = 0; i < answers.length; i++) {
             if (answers[i] == userChoice[i]) {
                 corr();
@@ -45,6 +55,11 @@ $(document).ready(function() {
 
         }
         alert("You answered " + correct + " correct. You answered " + incorrect + " incorrect.");
+    }
+
+    function user() {
+        var choice = $("#a" + i).attr(value);
+        userChoice.push(choice);
     }
 
     function corr() {
